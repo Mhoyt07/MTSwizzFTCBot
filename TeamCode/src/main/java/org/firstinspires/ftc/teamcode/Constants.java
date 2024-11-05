@@ -32,4 +32,7 @@ public class Constants {
     public static final double empty = 0;
     //servo full position
     public static final double full = 1;
+
+    //drive constants
+    public static final double rot_kP = 0.1;
 }
