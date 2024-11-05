@@ -6,13 +6,12 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
+import org.firstinspires.ftc.teamcode.Constants;
+
 public class PivotSubsystem {
     DcMotorEx pivot_1;
     DcMotorEx pivot_2;
     OpMode opMode;
-    int pos1;
-    int pos2;
-    int pos3;
     public PivotSubsystem(HardwareMap hardwareMap, OpMode opMode) {
         pivot_1 = hardwareMap.get(DcMotorEx.class, "pivot1");
         pivot_2 = hardwareMap.get(DcMotorEx.class, "pivot2");
@@ -32,44 +31,37 @@ public class PivotSubsystem {
         pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pivot_2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        //pidf stuff
-        double kP = 3;
-        double kI = 0;
-        double kD = 0;
-        double kF = 0;
-        PIDFCoefficients pidf_vals = new PIDFCoefficients(kP, kI, kD, kF);
+
+        PIDFCoefficients pidf_vals = new PIDFCoefficients(Constants.pivot_kP, Constants.pivot_kI, Constants.pivot_kD, Constants.pivot_kF);
         pivot_1.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, pidf_vals);
         pivot_2.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, pidf_vals);
 
-        //pivot positions
-        pos1 = 0;
-        pos2 = 120;
-        pos3 = 200;
+
     }
 
     public void run_to_1() {
-        pivot_1.setTargetPosition(pos1);
+        pivot_1.setTargetPosition(Constants.pivot_pos1);
         pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        pivot_1.setPower(1);
-        pivot_2.setTargetPosition(pos1);
+        pivot_1.setPower(Constants.pivot_power);
+        pivot_2.setTargetPosition(Constants.pivot_pos1);
         pivot_2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        pivot_2.setPower(1);
+        pivot_2.setPower(Constants.pivot_power);
     }
     public void run_to_2() {
-        pivot_1.setTargetPosition(pos2);
+        pivot_1.setTargetPosition(Constants.pivot_pos2);
         pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        pivot_1.setPower(1);
-        pivot_2.setTargetPosition(pos2);
+        pivot_1.setPower(Constants.pivot_power);
+        pivot_2.setTargetPosition(Constants.pivot_pos2);
         pivot_2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        pivot_2.setPower(1);
+        pivot_2.setPower(Constants.pivot_power);
     }
     public void run_to_3() {
-        pivot_1.setTargetPosition(pos3);
+        pivot_1.setTargetPosition(Constants.pivot_pos3);
         pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        pivot_1.setPower(1);
-        pivot_2.setTargetPosition(pos3);
+        pivot_1.setPower(Constants.pivot_power);
+        pivot_2.setTargetPosition(Constants.pivot_pos3);
         pivot_2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        pivot_2.setPower(1);
+        pivot_2.setPower(Constants.pivot_power);
     }
 
     public void stop() {

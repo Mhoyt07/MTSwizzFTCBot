@@ -6,12 +6,11 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
+import org.firstinspires.ftc.teamcode.Constants;
+
 public class ArmSubsystem {
     DcMotorEx arm;
     OpMode opMode;
-    int pos1;
-    int pos2;
-    int pos3;
 
     public ArmSubsystem(HardwareMap hardwareMap, OpMode opMode) {
         arm = hardwareMap.get(DcMotorEx.class, "arm");
@@ -24,37 +23,30 @@ public class ArmSubsystem {
         arm.setTargetPositionTolerance(0);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        //arm pidf values
-        double kP = 5;
-        double kI = 0;
-        double kD = 0;
-        double kF = 0;
-        PIDFCoefficients pidf_vals = new PIDFCoefficients(kP, kI, kD, kF);
+
+        PIDFCoefficients pidf_vals = new PIDFCoefficients(Constants.arm_kP, Constants.arm_kI, Constants.arm_kD, Constants.arm_kF);
         arm.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, pidf_vals);
 
 
-        //arm positions
-        pos1 = 0;
-        pos2 = -1000;
-        pos3 = -2000;
+
     }
 
     public void run_to_1() {
-        arm.setTargetPosition(pos1);
+        arm.setTargetPosition(Constants.arm_pos1);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        arm.setPower(1);
+        arm.setPower(Constants.arm_power);
     }
 
     public void run_to_2() {
-        arm.setTargetPosition(pos2);
+        arm.setTargetPosition(Constants.arm_pos2);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        arm.setPower(1);
+        arm.setPower(Constants.arm_power);
     }
 
     public void run_to_3() {
-        arm.setTargetPosition(pos3);
+        arm.setTargetPosition(Constants.arm_pos3);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        arm.setPower(1);
+        arm.setPower(Constants.arm_power);
     }
 
     public void stop() {
