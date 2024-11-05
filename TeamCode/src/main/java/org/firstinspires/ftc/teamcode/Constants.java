@@ -34,5 +34,5 @@ public class Constants {
     public static final double full = 1;
 
     //drive constants
-    public static final double rot_kP = 0.1;
+    public static final double rot_kP = 0.01;
 }
