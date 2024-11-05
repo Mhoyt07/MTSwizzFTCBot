@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.GrabberSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.PivotSubsystem;
 
 @TeleOp
@@ -18,6 +19,8 @@ public class teleOp extends LinearOpMode {
 
         PivotSubsystem pivot = new PivotSubsystem(hardwareMap, this);
 
+        GrabberSubsystem grabber = new GrabberSubsystem(hardwareMap, this);
+
         waitForStart();
         while (opModeIsActive()) {
             //gamepad values
@@ -29,6 +32,8 @@ public class teleOp extends LinearOpMode {
             boolean down2 = gamepad2.dpad_down;
             boolean right2 = gamepad2.dpad_right;
             boolean up2 = gamepad2.dpad_up;
+            boolean r_bump2 = gamepad2.right_bumper;
+            boolean l_bump2 = gamepad2.left_bumper;
 
             //arcade drive
             drive_train.arcade_drive(rx1, ly1);
@@ -53,6 +58,13 @@ public class teleOp extends LinearOpMode {
                 pivot.run_to_1();
             } else {
                 pivot.stop();
+            }
+
+            //grabber position setting
+            if (r_bump2) {
+                grabber.grab();
+            } else if (l_bump2) {
+                grabber.drop();
             }
 
             //telemetry data

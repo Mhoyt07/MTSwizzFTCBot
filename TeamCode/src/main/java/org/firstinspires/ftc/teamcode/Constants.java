@@ -27,4 +27,9 @@ public class Constants {
     //power for motors
     public static final double pivot_power = 0.75;
 
+    //servo constants
+    //servo empty position
+    public static final double empty = 0;
+    //servo full position
+    public static final double full = 1;
 }
