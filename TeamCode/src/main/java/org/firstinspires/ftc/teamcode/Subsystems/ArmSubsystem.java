@@ -20,6 +20,7 @@ public class ArmSubsystem {
 
         //resets encoder
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.setTargetPosition(0);
         arm.setTargetPositionTolerance(0);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
