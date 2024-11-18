@@ -5,6 +5,7 @@ import androidx.core.math.MathUtils;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
@@ -27,7 +28,7 @@ public class DriveSubsystem {
 
 
         //reverse directions
-        //back_right.setDirection(DcMotorSimple.Direction.REVERSE);
+        back_right.setDirection(DcMotorSimple.Direction.REVERSE);
         //back_left.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //imu parameters
@@ -44,8 +45,8 @@ public class DriveSubsystem {
     public void arcade_drive(double rx_joystick, double ly_joystick) {
         back_right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         back_left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        back_right.setPower(ly_joystick - rx_joystick);
-        back_left.setPower(ly_joystick + rx_joystick);
+        back_right.setPower(ly_joystick + rx_joystick);
+        back_left.setPower(ly_joystick - rx_joystick);
     }
 
     public void tank_drive(double ry_joystick, double ly_joystick) {
@@ -56,6 +57,7 @@ public class DriveSubsystem {
     }
 
     public void move_ticks(int ticks, double speed) {
+        //this.reset_encoder();
         back_right.setTargetPosition(ticks);
         back_left.setTargetPosition(ticks);
         back_right.setMode(DcMotor.RunMode.RUN_TO_POSITION);

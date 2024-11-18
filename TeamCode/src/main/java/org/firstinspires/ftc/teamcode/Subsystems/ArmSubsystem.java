@@ -3,25 +3,31 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Constants;
 
 public class ArmSubsystem {
     DcMotorEx arm;
     OpMode opMode;
+    Telemetry telemetry;
 
-    public ArmSubsystem(HardwareMap hardwareMap, OpMode opMode) {
+    public ArmSubsystem(HardwareMap hardwareMap, OpMode opMode, Telemetry telemetry) {
         arm = hardwareMap.get(DcMotorEx.class, "arm");
 
         this.opMode = opMode;
+        this.telemetry = telemetry;
 
         //resets encoder
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         arm.setTargetPosition(0);
         arm.setTargetPositionTolerance(0);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        arm.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
         PIDFCoefficients pidf_vals = new PIDFCoefficients(Constants.arm_kP, Constants.arm_kI, Constants.arm_kD, Constants.arm_kF);
@@ -59,5 +65,9 @@ public class ArmSubsystem {
 
     public int current_set_pos() {
         return arm.getTargetPosition();
+    }
+
+    public void periodic() {
+        telemetry.addData("Current Arm Position", arm.getCurrentPosition());
     }
 }

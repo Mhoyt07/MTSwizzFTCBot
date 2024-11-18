@@ -16,7 +16,7 @@ public class teleOp extends LinearOpMode {
 
         DriveSubsystem drive_train = new DriveSubsystem(hardwareMap);
 
-        ArmSubsystem arm = new ArmSubsystem(hardwareMap, this);
+        ArmSubsystem arm = new ArmSubsystem(hardwareMap, this, telemetry);
 
         PivotSubsystem pivot = new PivotSubsystem(hardwareMap, this);
 

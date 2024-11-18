@@ -11,7 +11,7 @@ public class GrabberSubsystem {
     OpMode opMode;
     public GrabberSubsystem(HardwareMap hardwareMap, OpMode opMode) {
 
-        grab = hardwareMap.get(Servo.class, "grabber");
+        grab = hardwareMap.get(Servo.class, "claw");
 
         this.opMode = opMode;
 

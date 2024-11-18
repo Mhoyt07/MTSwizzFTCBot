@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
@@ -30,6 +31,8 @@ public class PivotSubsystem {
         //puts motors in run to position mode
         pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pivot_2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        pivot_2.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
         PIDFCoefficients pidf_vals = new PIDFCoefficients(Constants.pivot_kP, Constants.pivot_kI, Constants.pivot_kD, Constants.pivot_kF);
