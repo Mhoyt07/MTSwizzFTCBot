@@ -35,14 +35,13 @@ public class PivotSubsystem {
         pivot_2.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-        PIDFCoefficients pidf_vals = new PIDFCoefficients(Constants.pivot_kP, Constants.pivot_kI, Constants.pivot_kD, Constants.pivot_kF);
-        pivot_1.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, pidf_vals);
-        pivot_2.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, pidf_vals);
+        update_pidf(Constants.pivot_kP, Constants.pivot_kI, Constants.pivot_kD, Constants.pivot_kF1);
 
 
     }
 
     public void run_to_1() {
+        update_pidf(Constants.pivot_kP, Constants.pivot_kI, Constants.pivot_kD, Constants.pivot_kF1);
         pivot_1.setTargetPosition(Constants.pivot_pos1);
         pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pivot_1.setPower(Constants.pivot_power);
@@ -51,6 +50,7 @@ public class PivotSubsystem {
         pivot_2.setPower(Constants.pivot_power);
     }
     public void run_to_2() {
+        update_pidf(Constants.pivot_kP, Constants.pivot_kI, Constants.pivot_kD, Constants.pivot_kF2);
         pivot_1.setTargetPosition(Constants.pivot_pos2);
         pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pivot_1.setPower(Constants.pivot_power);
@@ -59,6 +59,7 @@ public class PivotSubsystem {
         pivot_2.setPower(Constants.pivot_power);
     }
     public void run_to_3() {
+        update_pidf(Constants.pivot_kP, Constants.pivot_kI, Constants.pivot_kD, Constants.pivot_kF3);
         pivot_1.setTargetPosition(Constants.pivot_pos3);
         pivot_1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pivot_1.setPower(Constants.pivot_power);
@@ -74,5 +75,12 @@ public class PivotSubsystem {
 
     public int[] current_position() {
         return new int[]{pivot_1.getCurrentPosition(), pivot_2.getCurrentPosition()};
+    }
+
+    public void update_pidf(double kP, double kI, double kD, double kF) {
+        PIDFCoefficients pidf_vals = new PIDFCoefficients(kP, kI, kD, kF);
+        pivot_1.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, pidf_vals);
+        pivot_2.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, pidf_vals);
+
     }
 }

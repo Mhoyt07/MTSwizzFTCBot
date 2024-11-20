@@ -19,7 +19,9 @@ public class Constants {
     public static final double pivot_kP = 1.5;
     public static final double pivot_kI = 0;
     public static final double pivot_kD = 0;
-    public static final double pivot_kF = 0;
+    public static final double pivot_kF1 = 0;
+    public static final double pivot_kF2 = 0;
+    public static final double pivot_kF3 = 0;
     //pivot positions
     public static final int pivot_pos1 = 0;
     public static final int pivot_pos2 = 50;
