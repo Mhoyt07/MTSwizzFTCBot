@@ -30,9 +30,6 @@ public class Auto1 extends LinearOpMode {
         while (opModeIsActive() && (drive_train.bl_busy() || drive_train.br_busy())) {
         }
 
-        //resets encoder of wheels
-        drive_train.reset_encoder();
-
         //drives forward 500 ticks
         drive_train.move_ticks(500, 1);
 

@@ -57,6 +57,8 @@ public class DriveSubsystem {
     }
 
     public void move_ticks(int ticks, double speed) {
+        //reset encoder first
+        this.reset_encoder();
         //this.reset_encoder();
         back_right.setTargetPosition(ticks);
         back_left.setTargetPosition(ticks);
@@ -79,11 +81,13 @@ public class DriveSubsystem {
 
     //goes from -180 to 180
     public void rotate_degrees(double target) {
-        double distance = target - this.get_Yaw();
+        while (this.get_Yaw() != target) {
+            double distance = target - this.get_Yaw();
 
-        //sets motor speeds
-        back_left.setPower(MathUtils.clamp(distance * Constants.rot_kP, -1, 1));
-        back_right.setPower(MathUtils.clamp(-distance * Constants.rot_kP, -1, 1));
+            //sets motor speeds
+            back_left.setPower(MathUtils.clamp(distance * Constants.rot_kP, -1, 1));
+            back_right.setPower(MathUtils.clamp(-distance * Constants.rot_kP, -1, 1));
+        }
     }
 
     //checks if motors are busy
