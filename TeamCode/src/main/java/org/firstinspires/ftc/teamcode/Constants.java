@@ -6,7 +6,9 @@ public class Constants {
     public static final double arm_kP = 1;
     public static final double arm_kI = 0;
     public static final double arm_kD = 0;
-    public static final double arm_kF = 0;
+    public static final double arm_kF1 = 0;
+    public static final double arm_kF2 = 0;
+    public static final double arm_kF3 = 0;
     //arm positions
     public static final int arm_pos1 = 0;
     public static final int arm_pos2 = 500;

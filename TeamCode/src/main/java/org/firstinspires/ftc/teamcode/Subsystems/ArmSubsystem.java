@@ -30,26 +30,28 @@ public class ArmSubsystem {
         arm.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-        PIDFCoefficients pidf_vals = new PIDFCoefficients(Constants.arm_kP, Constants.arm_kI, Constants.arm_kD, Constants.arm_kF);
-        arm.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, pidf_vals);
+        update_pidf(Constants.arm_kP, Constants.arm_kI, Constants.arm_kD, Constants.arm_kF1);
 
 
 
     }
 
     public void run_to_1() {
+        update_pidf(Constants.arm_kP, Constants.arm_kI, Constants.arm_kD, Constants.arm_kF1);
         arm.setTargetPosition(Constants.arm_pos1);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         arm.setPower(Constants.arm_power);
     }
 
     public void run_to_2() {
+        update_pidf(Constants.arm_kP, Constants.arm_kI, Constants.arm_kD, Constants.arm_kF2);
         arm.setTargetPosition(Constants.arm_pos2);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         arm.setPower(Constants.arm_power);
     }
 
     public void run_to_3() {
+        update_pidf(Constants.arm_kP, Constants.arm_kI, Constants.arm_kD, Constants.arm_kF3);
         arm.setTargetPosition(Constants.arm_pos3);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         arm.setPower(Constants.arm_power);
@@ -65,6 +67,11 @@ public class ArmSubsystem {
 
     public int current_set_pos() {
         return arm.getTargetPosition();
+    }
+
+    public void update_pidf(double kP, double kI, double kD, double kF) {
+        PIDFCoefficients pidf_vals = new PIDFCoefficients(kP, kI, kD, kF);
+        arm.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, pidf_vals);
     }
 
     public void periodic() {
